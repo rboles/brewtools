@@ -1,0 +1,97 @@
+html,body {
+    margin:0;
+    padding:0;
+}
+body {
+    font:100% arial,sans-serif;
+    text-align:center;
+}
+a, a:link, a:visited, a:hover, a:active {
+    color:#00F;
+    font-weight:normal;
+}
+div#ribbon {
+    width:100%;
+    padding-top:6px;
+    padding-bottom:4px;
+    text-align:left;
+    background:#EEE;
+    border-bottom:1px solid #000;
+}
+div#ribbon span {
+    padding-left:16px;
+}
+div#ribbon .icon {
+    width:16px;
+    height:16px;
+}
+div#ribbon a, a:link, a:visited, a:hover, a:active {
+    color:#00B;
+    text-decoration:none;
+    font-weight:bold;
+}
+div#header {
+    position:relative;
+    margin-top:16px;
+}
+div#header .title {
+    font-weight:bold;
+    font-size:180%;
+}
+.separator {
+    line-height:1px;
+    margin-top:16px;
+    margin-bottom:16px;
+    border-bottom:1px solid #BBB;
+}
+div#container {
+    text-align:left;
+}
+div#navigation {
+    background:#FFF;
+}
+div#navigation .toc div {
+    margin-bottom:8px;
+}
+div#extra {
+    background:#FFF;
+}
+div#container {
+    width:700px;
+    margin:0 auto;
+}
+
+div#content {
+    float:right;
+    width:500px;
+}
+
+div#navigation {
+    float:left;
+    width:200px;
+}
+
+div#navigation .toc {
+    margin-top:16px;
+    margin-left:16px;
+}
+div#navigation .toc a, a:visited, a:hover, a:link, a:active  {
+    color:#00F;
+}
+div#extra {
+    float:left;
+    clear:left;
+    width:200px;
+}
+div#footer {
+    clear:both;
+    width:100%;
+    background:#FFFFFF;
+}
+.about {
+    padding:0 16px 16px 16px;
+}
+div#footer .about a, a:link, a:visited, a:hover, a:active {
+    color:#00F;
+    font-weight:normal;
+}

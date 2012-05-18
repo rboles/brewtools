@@ -1,0 +1,59 @@
+<div class="lift:GravityTempAdjust?form=post">
+  <div id="GravityTempAdjust" class="calculator">
+    <div class="title">
+      <div style="float:right;" class="showDoc">
+        <div style="margin-top:4px;">
+          <img src="images/help-badge.png" />
+        </div>
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="images/calculator-badge.png" /></td>
+            <td><a>Gravity Adjust for Temperature</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="body">
+      <div class="doc">
+        <div class="summary">
+          Adjust a gravity measurement for temperature.
+          <span class="showMoreDoc">more...</span>
+        </div>
+        <div class="description">
+          <div>
+            For every 10 degrees over 60 dF add 0.0003 to gravity and
+            subtract 0.0003 for every 10 dF under 60.
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <table cellpadding="2">
+          <tbody>
+            <tr>
+              <td><strong>Wort Gravity:</strong></td>
+              <td><e:gravity /></td>
+            </tr>
+            <tr>
+              <td><strong>Wort Temperature (dF):</strong></td>
+              <td><e:temp /></td>
+            </tr>
+            <tr>
+              <td><strong>Adjusted:</strong></td>
+              <td>
+                <e:result />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="submitButton">
+          <e:submit />
+        </div>
+        <div class="summary">
+          <e:summary />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+.calculators .header {
+
+}
+
+.calculators .header .headerTxt {
+    margin-top:16px;
+    font-size:180%;
+    font-family:Arial,Helvetica,sans-serif;
+    font-weight:bold;
+}
+
+.calculators .seperator {
+    margin-top:24px;
+    margin-bottom:24px;
+}
+
+.calculators h3 {
+    color:#00F;
+}
+
+.calculators h3 a, a:visited, a:hover, a:link, a:active {
+    font-weight:bold;
+    color:#00F;
+}
+
+.calculator .title {
+    padding:4px;
+    padding-left:8px;
+    border:1px solid #777777;
+    background-color:#EEEEEE;
+    border-radius:6px;
+}
+
+.calculator .title a, a:visited, a:hover, a:link, a:active {
+    color: #000;
+    text-decoration: none;
+    font-weight:bold;
+}
+
+.calculator .title .showDoc {
+    float:right;
+    padding-right:8px;
+    font-weight:bold;
+}
+
+.calculator .title .helpBadge {
+    float:right;
+    padding-right:8px;
+    font-weight:bold;
+}
+
+.calculator .title .titleBadge {
+    cursor:pointer;
+}
+
+.calculator .title .titleText {
+    cursor:pointer;
+}
+
+.calculator .body {
+    margin-left:16px;
+    margin-top:8px;
+}
+
+.calculator .doc {
+    display:none;
+}
+
+.calculator span.result {
+    background-color:#EEE;
+    padding:4px;
+    padding-right:8px;
+    padding-left:8px;
+}
+
+.calculator div.submitButton {
+    margin:0 auto;
+    margin-top:8px;
+    margin-bottom:8px;
+    text-align:center;
+}
+
+.calculator .summary {
+    margin-top:8px;
+}
+
+.calculator .description {
+    margin-top:8px;
+    display:none;
+}
+
+.calculator .showDoc, .showMoreDoc {
+    cursor:pointer;
+    color:#00F;
+}
+
+.calculator .equation {
+    font-family: monospace, typewriter;
+}
+
+.calculator .gravityInput {
+    width:80px;
+}
+
+.calculator .result {
+    background-color:#EEE;
+    padding-left:2px;
+}

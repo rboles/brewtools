@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="homebrew calculator" />
+    
+		<title>BrewTools</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="css/brewtools.css" />
+    <link rel="stylesheet" type="text/css" href="css/calculators.css" />
+
+    <script id="jquery" src="classpath/jquery.js" type="text/javascript"/>
+    <script id="json" src="classpath/json.js" type="text/javascript"/>
+
+    <script src="js/calculators.js" type="text/javascript"/>
+  </head>
+  <body>
+    <div id="ribbon">
+      <span><a href="../index.html">~sboles</a></span>
+    </div>
+    <div id="container">
+      <div id="header">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <img id="headerImg"
+                     src="images/calculator-ornament.png"
+                     style="width:64px; height:64px;" />
+                <img id="ajaxLoader" src="images/ajax-loader.gif"
+                     style="width:64px; height:64px; display:none;" />
+              </td>
+              <td>
+                <div class="title">BrewTools</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="separator" style="margin-top:0;"></div>
+
+      <div id="wrapper">
+        <div id="content"></div>
+      </div>
+      <div id="navigation">
+        <div class="toc">
+          <div>
+            <a href="#gravity_calculators">Gravity</a>
+          </div>
+          <div>
+            <a href="#hop_calculators">Hops</a>
+          </div>
+          <!--
+          <div>
+            <a href="#mash_calculators">Mash</a>
+          </div>
+          <div>
+            <a href="#starter_calculators">Starter</a>
+          </div>
+          -->
+          <div>
+            <a href="#temperature_calculators">Temperature</a>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="api/index.html">API</a>
+          </div>
+        </div>
+      </div>
+      <div id="extra"></div>
+      <div id="footer">
+        <div class="separator" style="margin-top:0; margin-bottom:0px;"></div>
+        <div class="about">
+          <h3>About</h3>
+          <div style="padding-bottom:16px;">
+            Calculators for the home brewer.
+          </div>
+          <div style="padding-bottom:16px;">
+            Written in
+            <a href="http://www.scala-lang.org/">Scala</a>.
+            <a href="http://liftweb.net">Lift</a>
+            powers the web app.
+            Developed with
+            <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a>,
+            <a href="http://www.scala-lang.org/node/354">scala-mode</a>,
+            <a href="http://maven.apache.org/">Maven</a>.
+          </div>
+          <div style="padding-bottom:16px;">
+            <a href="api/index.html">XML / JSON API</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

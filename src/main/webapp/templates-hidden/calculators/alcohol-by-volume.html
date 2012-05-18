@@ -1,0 +1,97 @@
+<div class="lift:AlcoholByVolume?form=post">
+  <div id="AlcoholByVolume" class="calculator">
+    <div class="title">
+      <div style="float:right;" class="showDoc">
+        <div style="margin-top:4px;">
+          <img src="images/help-badge.png" />
+        </div>
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="images/calculator-badge.png" class="titleBadge" /></td>
+            <td><a class="titleText">Alcohol By Volume</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="body">
+      <div class="doc">
+        <div class="summary">
+          Calculate alcohol by volume (ABV)
+          <span class="showMoreDoc">more...</span>
+        </div>
+        <div class="description">
+          <div>
+            <div>
+              There are two common equations for calculating alcohol
+              by volume:
+            </div>
+            <div style="margin:8px;0px;8px;16px;">
+              <div>
+                Daniels:
+                <span class="equation">
+                  (76.08 * (OG-FG) / (1.775-OG)) * (FG / 0.794)
+                </span>
+              </div>
+              <div style="margin-top:8px;">
+                Papazian:
+                <span class="equation">
+                  (OG - FG) * 131.25
+                </span>
+              </div>
+            </div>
+            <div>
+              The Papazian equation is most typically used. The Daniels
+              equation is preferred for higher gravity beers. The
+              Papazian equation is the default.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <table cellpadding="2">
+          <tbody>
+            <tr>
+              <td><strong>Original Gravity:</strong></td>
+              <td><e:original_gravity /></td>
+              <td>
+                <span style="margin-right:4px;">at</span>
+                <e:original_temp />
+                <span><strong>&deg;</strong></span>
+              </td>
+              <td>
+                <e:temp_measure />
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Final Gravity:</strong></td>
+              <td><e:final_gravity /></td>
+              <td colspan="2">
+                <span style="margin-right:4px;">at</span>
+                <e:final_temp />
+                <span><strong>&deg;</strong></span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Equation:</strong></td>
+              <td colspan="3"><e:select_equation /></td>
+            </tr>
+            <tr>
+              <td><strong>Alcohol By Volume:</strong></td>
+              <td colspan="3">
+                <e:abv />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="submitButton">
+          <e:submit />
+        </div>
+        <div class="summary">
+          <e:summary />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

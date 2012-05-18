@@ -1,0 +1,76 @@
+<div class="lift:TempConvert?form=post">
+  <div id="TempConvert" class="calculator">
+    <div class="title">
+      <div style="float:right;" class="showDoc">
+        <div style="margin-top:4px;">
+          <img src="images/help-badge.png" />
+        </div>
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <td><img src="images/calculator-badge.png" /></td>
+            <td><a>Conversion</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="body">
+      <div class="doc">
+        <div class="summary">
+          Convert between Fahrenheit and Celsius temperatures
+          <span class="showMoreDoc">more...</span>
+        </div>
+        <div class="description">
+          <div>
+            To convert from degrees Fahrenheit 
+            (<span class="equation">dF</span>)
+            to degrees Celsius:
+            <div style="margin-left:16px;">
+              <span class="equation">
+                (5.0 / 9.0) * (dF - 32.0)
+              </span>
+            </div>
+          </div>
+          <div style="margin-top:8px;">
+            To convert from degrees Celsius
+            (<span class="equation">dC</span>)
+            to degrees Fahrenheit:
+            <div style="margin-left:16px;">
+              <span class="equation">
+                1.8 * dC + 32.0
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <table cellpadding="2">
+          <tbody>
+            <tr>
+              <td>
+                <e:fahrenheit />
+              </td>
+              <td><strong>&deg; Fahrenheit</strong></td>
+              <td>
+                <span style="margin-left:4px;margin-right:4px;">
+                  <strong>=</strong>
+                </span>
+              </td>
+              <td>
+                <e:celsius />
+              </td>
+              <td><strong>&deg; Celsius</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="submitButton">
+          <e:submit />
+        </div>
+        <div style="margin-top:8px;">
+          <e:summary />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

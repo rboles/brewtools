@@ -1,0 +1,670 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="BrewTools API" />
+    <meta name="keywords" content="sboles Scala Lift REST Homebrew API
+                                   Calculators Celsius Fahrenheit
+                                   Gravity" />
+    <title>BrewTools API</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <script id="jquery" src="../classpath/jquery.js" type="text/javascript"/>
+  </head>
+  <body>
+    <div id="ribbon">
+      <span>
+        <a href="../">
+        <img class="icon" src="../images/calculator-badge.png" />
+        BrewTools</a>
+      </span>
+    </div>
+    <div id="container">
+      <div id="header">
+        <table>
+          <tbody>
+            <tr>
+              <td><img src="../images/api-icon.gif" /></td>
+              <td><span class="title">BrewTools API</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="separator" style="margin-top:8px;"></div>
+
+      <div id="content">
+
+        <div class="toc">
+          <div class="title">
+            <span class="url">
+              <a name="toc">Contents</a>
+            </span>
+          </div>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#abv">abv</a></li>
+            <li><a href="#hop_aau">hop_aau</a></li>
+            <li><a href="#gravity_adjust">gravity_adjust</a></li>
+            <li><a href="#temp_convert">temp_convert</a></li>
+          </ul>
+        </div>
+
+        <div class="api">
+          <div class="title">
+            <span class="url"><a name="about">About</a></span>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Provides a RESTful API to the brewing calculators.
+            </div>
+            <div class="p">
+              The services return results in XML and JSON.
+            </div>
+            <div class="p">
+              Many of the services support <strong>+</strong> delimited
+              parameter lists.
+            </div>
+          </div>
+        </div>
+
+        <div class="api">
+          <div class="title">
+            <span class="url"><a name="abv">abv</a></span>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Calculate alchohol by volume.
+            </div>
+            <div class="p">
+              There are two common equations for calculating alcohol
+              by volume:
+            </div>
+            <div class="p">
+              Daniels:
+              <span class="equation">
+                (76.08 * (OG-FG) / (1.775-OG)) * (FG / 0.794)
+              </span>
+            </div>
+            <div class="p">
+              Papazian:
+              <span class="equation">
+                (OG - FG) * 131.25
+              </span>
+            </div>
+            <div class="p">
+              The Papazian equation is most typically used while the Daniels
+              equation is preferred for higher gravity beers.
+            </div>
+          </div>
+          <div class="subtitle">Request Parameters</div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>gi</strong></td>
+                  <td>Initial gravity</td>
+                  <td></td>
+                  <td>Initial gravity of the unfermented wort</td>
+                </tr>
+                <tr>
+                  <td><strong>gf</strong></td>
+                  <td>Final gravity</td>
+                  <td></td>
+                  <td>Final gravity of the beer</td>
+                </tr>
+                <tr>
+                  <td><strong>ti</strong></td>
+                  <td>Temperature of wort</td>
+                  <td>60&deg; Fahrenheit</td>
+                  <td>Temperature of wort at initial gravity reading</td>
+                </tr>
+                <tr>
+                  <td><strong>tf</strong></td>
+                  <td>Temperature of beer</td>
+                  <td>60&deg; Fahrenheit</td>
+                  <td>Temperature of beer at final gravity reading</td>
+                </tr>
+                <tr>
+                  <td><strong>tc</strong></td>
+                  <td>T or F</td>
+                  <td>F</td>
+                  <td>Temperatures in degrees Celsius</td>
+                </tr>
+                <tr>
+                  <td><strong>eq</strong></td>
+                  <td>P or D</td>
+                  <td>P</td>
+                  <td>Gravity equation: Papazian or Daniels</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Request parameter: <strong>gf</strong> may
+              be <strong>+</strong> delimited list.
+            </div>
+            <div class="p">
+              At minimum the request needs to
+              include <strong>gi</strong>
+              and <strong>gf</strong>. This will calculate alcohol by
+              volume using the Papazian equation, assuming gravity
+              measurements at 60&deg; Fahrenheit.
+            </div>
+          </div>
+          <div class="subtitle">Response</div>
+          <div class="response">
+            <div class="exampleResponse">
+              &lt;gravity&gt;&lt;abv gi="1.075" gf="1.012" eq="p" r="8.27"/&gt;&lt;/gravity&gt;
+            </div>
+            <div class="exampleResponse">
+              [{ "gi":"1.075", "gf":"1.012", "eq":"p", "r":"8.27" }]
+            </div>
+          </div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Property</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>gi</strong></td>
+                  <td>Initial gravity</td>
+                </tr>
+                <tr>
+                  <td><strong>gf</strong></td>
+                  <td>Final gravity</td>
+                </tr>
+                <tr>
+                  <td><strong>eq</strong></td>
+                  <td>Equation: <strong>p</strong> (Papazian)
+                    or <strong>d</strong> (Daniels)
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>r</strong></td>
+                  <td>Result: alcohol by volume</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p"></div>
+          </div>
+          <div class="subtitle">Examples</div>
+          <div class="examples">
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ABV for an initial gravity of 1.075 and a
+                  final gravity of 1.012; use the Papazian equation
+                  and assume gravity samples at 60&deg; Fahrenheit.
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.json?gi=1.075&amp;gf=1.012">
+                    abv.json?gi=1.075&amp;gf=1.012</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.xml?gi=1.075&amp;gf=1.012">
+                    abv.xml?gi=1.075&amp;gf=1.012</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ABV for an initial gravity of 1.075 and a
+                  range of final gravities: 1.012, 1.010 and 1.008;
+                  use the Papazian equation and assume gravity samples
+                  at 60&deg; Fahrenheit.
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.json?gi=1.075&amp;gf=1.012+1.010+1.008">
+                    abv.json?gi=1.075&amp;gf=1.012+1.010+1.008</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.xml?gi=1.075&amp;gf=1.012+1.010+1.008">
+                    abv.xml?gi=1.075&amp;gf=1.012+1.010+1.008</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ABV for an initial gravity of 1.075 and a
+                  final gravity of 1.012; use the Daniels equation
+                  and assume gravity samples at 60&deg; Fahrenheit.
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.json?gi=1.075&amp;gf=1.012&amp;eq=d">
+                    abv.json?gi=1.075&amp;gf=1.012&amp;eq=d</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.xml?gi=1.075&amp;gf=1.012&amp;eq=d">
+                    abv.xml?gi=1.075&amp;gf=1.012&amp;eq=d</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ABV for an initial gravity of 1.075 read
+                  at 80&deg; Fahrenheit and a final gravity of 1.012
+                  read at 65&deg; Fahrenheit; use the Papazian
+                  equation.
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.json?gi=1.075&amp;gf=1.012&amp;ti=80&amp;tf=65">
+                    abv.json?gi=1.075&amp;gf=1.012&amp;ti=80&amp;tf=65</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.xml?gi=1.075&amp;gf=1.012&amp;ti=80&amp;tf=65">
+                    abv.xml?gi=1.075&amp;gf=1.012&amp;ti=80&amp;tf=65</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ABV for an initial gravity of 1.075 read
+                  at 26&deg; Celsius and a final gravity of 1.012
+                  read at 18&deg; Celsius; use the Papazian
+                  equation.
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.json?gi=1.075&amp;gf=1.012&amp;ti=26&amp;tf=18&amp;tc=t">
+                    abv.json?gi=1.075&amp;gf=1.012&amp;ti=26&amp;tf=18&amp;tc=t</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="abv.xml?gi=1.075&amp;gf=1.012&amp;ti=26&amp;tf=18&amp;tc=t">
+                    abv.xml?gi=1.075&amp;gf=1.012&amp;ti=26&amp;tf=18&amp;tc=t</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top"><a href="#toc">top</a></div>
+        </div>
+
+        <div class="api">
+          <div class="title">
+            <span class="url"><a name="hop_aau">hop_aau</a></span>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Converts hops measured in AAU to an equivalent
+              measurement in ounces.
+            </div>
+          </div>
+          <div class="subtitle">Request Parameters</div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>aau</strong></td>
+                  <td>Hop AAU</td>
+                  <td>Hop measurement in AAU</td>
+                </tr>
+                <tr>
+                  <td><strong>aa</strong></td>
+                  <td>Hop AA</td>
+                  <td>Percent AA of hops</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Request parameter: <strong>aa</strong> may
+              be <strong>+</strong> delimited list.
+            </div>
+          </div>
+          <div class="subtitle">Response</div>
+          <div class="response">
+            <div class="exampleResponse">
+              &lt;hops&gt;&lt;hop_aau aa="3" oz="2" aau="6"/&gt;&lt;/hops&gt;
+            </div>
+            <div class="exampleResponse">
+              [{ "aau":"6", "aa":"3", "oz":"2" }]
+            </div>
+          </div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Property</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>aau</strong></td>
+                  <td>Hop AAU measurement</td>
+                </tr>
+                <tr>
+                  <td><strong>aa</strong></td>
+                  <td>Hop AA</td>
+                </tr>
+                <tr>
+                  <td><strong>oz</strong></td>
+                  <td>Equivalent ounces</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p"></div>
+          </div>
+          <div class="subtitle">Examples</div>
+          <div class="examples">
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate ounces of hops at 3% AA to satisfy a
+                  recipe requirement of 6 AAU.
+                </div>
+                <div class="exampleUrl">
+                  <a href="hop_aau.json?aau=6&amp;aa=3">
+                    hop_aau.json?aau=6&amp;aa=3</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="hop_aau.xml?aau=6&amp;aa=3">
+                    hop_aau.xml?aau=6&amp;aa=3</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top"><a href="#toc">top</a></div>
+        </div>
+
+        <div class="api">
+          <div class="title">
+            <span class="url"><a name="gravity_adjust">gravity_adjust</a></span>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Adjust a gravity measurement for temperature.
+            </div>
+            <div class="p">
+              For every 10 degrees over 60 dF add 0.0003 to gravity
+              and subtract 0.0003 for every 10 dF under 60.
+            </div>
+            <div class="p">
+              Celsius temperatures are converted to Fahrenheit.
+            </div>
+          </div>
+          <div class="subtitle">Request Parameters</div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>g</strong></td>
+                  <td>Gravity</td>
+                  <td>Gravity measurement</td>
+                </tr>
+                <tr>
+                  <td><strong>f</strong></td>
+                  <td>Temperature</td>
+                  <td>Temperature measurement, Fahrenheit</td>
+                </tr>
+                <tr>
+                  <td><strong>c</strong></td>
+                  <td>Temperature</td>
+                  <td>Temperature measurement, Celsius</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Request parameters: <strong>c</strong>
+              and <strong>f</strong> may
+              be <strong>+</strong> delimited lists.
+            </div>
+          </div>
+          <div class="subtitle">Response</div>
+          <div class="response">
+            <div class="exampleResponse">
+              &lt;gravity&gt;&lt;adjust c="22.22" f="72" r="1.079" g="1.075"/&gt;&lt;/gravity&gt;
+            </div>
+            <div class="exampleResponse">
+              [{ "g":"1.075", "f":"72", "c":"22.22", "r":"1.079" }]
+            </div>
+          </div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Property</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>g</strong></td>
+                  <td>Wort gravity</td>
+                </tr>
+                <tr>
+                  <td><strong>f</strong></td>
+                  <td>Degrees Fahrenheit</td>
+                </tr>
+                <tr>
+                  <td><strong>c</strong></td>
+                  <td>Degrees Celsius</td>
+                </tr>
+                <tr>
+                  <td><strong>r</strong></td>
+                  <td>Result: equivalent gravity at 60 degrees Fahrenheit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p"></div>
+          </div>
+          <div class="subtitle">Examples</div>
+          <div class="examples">
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Adjust a gravity of 1.075, measured at 72 degrees
+                  Fahrenheit to an equivalent gravity at 60 degrees
+                  Fahrenheit.
+                </div>
+                <div class="exampleUrl">
+                  <a href="gravity_adjust.json?g=1.075&amp;f=72">
+                    gravity_adjust.json?g=1.075&amp;f=72</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="gravity_adjust.xml?g=1.075&amp;f=72">
+                    gravity_adjust.xml?g=1.075&amp;f=72</a>
+                </div>
+              </div>
+              <div class="desc">
+                <div class="p">
+                  Adjust a gravity of 1.082, measured at 26 degrees
+                  Celsius to an equivalent gravity at 15 degrees
+                  Celsius.
+                </div>
+                <div class="exampleUrl">
+                  <a href="gravity_adjust.json?g=1.082&amp;c=26">
+                    gravity_adjust.json?g=1.082&amp;c=26</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="gravity_adjust.xml?g=1.082&amp;c=26">
+                    gravity_adjust.xml?g=1.082&amp;c=26</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top"><a href="#toc">top</a></div>
+        </div>
+
+        <div class="api">
+          <div class="title">
+            <span class="url"><a name="temp_convert">temp_convert</a></span>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Convert between Celsius and Fahrenheit temperature
+              measurements.
+            </div>
+          </div>
+          <div class="subtitle">Request Parameters</div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>t</strong></td>
+                  <td>Temperature</td>
+                  <td>Calculate Celsius and Fahrenheit equivalents of
+                    <strong>t</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>c</strong></td>
+                  <td>Degrees Celsius</td>
+                  <td>Calculate Fahrenheit equivalent of
+                    <strong>c</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>f</strong></td>
+                  <td>Degrees Fahrenheit</td>
+                  <td>Calculate Celsius equivalent of
+                    <strong>f</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p">
+              Request parameters may be <strong>+</strong> delimited
+              lists.
+            </div>
+          </div>
+          <div class="subtitle">Response</div>
+          <div class="response">
+            <div class="exampleResponse">
+              &lt;temperature&gt;&lt;conversion c="18.33" f="65" t="65"/&gt;&lt;/temperature&gt;
+            </div>
+            <div class="exampleResponse">
+              [{ "t":"65", "c":"18.33", "f":"65" }]
+            </div>
+          </div>
+          <div class="params">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Property</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td><strong>t</strong></td>
+                  <td>Original temperature</td>
+                </tr>
+                <tr>
+                  <td><strong>c</strong></td>
+                  <td>Celsius equivalent</td>
+                </tr>
+                <tr>
+                  <td><strong>f</strong></td>
+                  <td>Fahrenheit equivalent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="desc">
+            <div class="p"></div>
+          </div>
+          <div class="subtitle">Examples</div>
+          <div class="examples">
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate Celsius equivalent of
+                  65<strong>&deg;</strong> Fahrenheit
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.json?f=65">
+                  temp_convert.json?f=65</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.xml?f=65">
+                  temp_convert.xml?f=65</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate Celsius and Fahrenheit equivalents of
+                  15<strong>&deg;</strong>
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.json?t=15">
+                  temp_convert.json?t=15</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.xml?t=15">
+                  temp_convert.xml?t=15</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate Fahrenheit equivalent of
+                  8<strong>&deg;</strong> Celsius
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.json?c=8">
+                  temp_convert.json?c=8</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.xml?c=8">
+                  temp_convert.xml?c=8</a>
+                </div>
+              </div>
+            </div>
+            <div class="example">
+              <div class="desc">
+                <div class="p">
+                  Calculate Celsius equivalent of
+                  65<strong>&deg;</strong>, 45<strong>&deg;</strong>
+                  and 120<strong>&deg;</strong> Fahrenheit
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.json?f=65+45+120">
+                  temp_convert.json?f=65+45+120</a>
+                </div>
+                <div class="exampleUrl">
+                  <a href="temp_convert.xml?f=65+45+120">
+                  temp_convert.xml?f=65+45+120</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="top"><a href="#toc">top</a></div>
+        </div>
+
+        <div class="separator"></div>
+
+      </div>
+    </div>
+  </body>
+</html>
